@@ -159,4 +159,56 @@
     <method>com.google.longrunning.Operation getOperation(java.lang.String)</method>
   </difference>
   
+  <!-- Add support for NUMERIC data type -->
+  <difference>
+    <differenceType>7013</differenceType>
+    <className>com/google/cloud/spanner/AbstractStructReader</className>
+    <method>java.math.BigDecimal getBigDecimalInternal(int)</method>
+  </difference>
+  <difference>
+    <differenceType>7013</differenceType>
+    <className>com/google/cloud/spanner/AbstractStructReader</className>
+    <method>java.util.List getBigDecimalListInternal(int)</method>
+  </difference>
+  <difference>
+    <differenceType>7012</differenceType>
+    <className>com/google/cloud/spanner/StructReader</className>
+    <method>java.math.BigDecimal getBigDecimal(int)</method>
+  </difference>
+  <difference>
+    <differenceType>7012</differenceType>
+    <className>com/google/cloud/spanner/StructReader</className>
+    <method>java.math.BigDecimal getBigDecimal(java.lang.String)</method>
+  </difference>
+  <difference>
+    <differenceType>7012</differenceType>
+    <className>com/google/cloud/spanner/StructReader</className>
+    <method>java.util.List getBigDecimalList(int)</method>
+  </difference>
+  <difference>
+    <differenceType>7012</differenceType>
+    <className>com/google/cloud/spanner/StructReader</className>
+    <method>java.util.List getBigDecimalList(java.lang.String)</method>
+  </difference>
+  <difference>
+    <differenceType>7013</differenceType>
+    <className>com/google/cloud/spanner/Value</className>
+    <method>java.math.BigDecimal getNumeric()</method>
+  </difference>
+  <difference>
+    <differenceType>7013</differenceType>
+    <className>com/google/cloud/spanner/Value</className>
+    <method>java.util.List getNumericArray()</method>
+  </difference>
+
+<!--   
+[ERROR] 7013: com.google.cloud.spanner.AbstractStructReader: Abstract method 'protected java.math.BigDecimal getBigDecimalInternal(int)' has been added
+[ERROR] 7013: com.google.cloud.spanner.AbstractStructReader: Abstract method 'protected java.util.List getBigDecimalListInternal(int)' has been added
+[ERROR] 7012: com.google.cloud.spanner.StructReader: Method 'public java.math.BigDecimal getBigDecimal(int)' has been added to an interface
+[ERROR] 7012: com.google.cloud.spanner.StructReader: Method 'public java.math.BigDecimal getBigDecimal(java.lang.String)' has been added to an interface
+[ERROR] 7012: com.google.cloud.spanner.StructReader: Method 'public java.util.List getBigDecimalList(int)' has been added to an interface
+[ERROR] 7012: com.google.cloud.spanner.StructReader: Method 'public java.util.List getBigDecimalList(java.lang.String)' has been added to an interface
+[ERROR] 7013: com.google.cloud.spanner.Value: Abstract method 'public java.math.BigDecimal getNumeric()' has been added
+[ERROR] 7013: com.google.cloud.spanner.Value: Abstract method 'public java.util.List getNumericArray()' has been added
+ -->
 </differences>
