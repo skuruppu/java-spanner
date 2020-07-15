@@ -20,6 +20,7 @@ import com.google.cloud.ByteArray;
 import com.google.cloud.Date;
 import com.google.cloud.Timestamp;
 import com.google.common.base.Preconditions;
+import java.math.BigDecimal;
 import java.util.List;
 
 /** Forwarding implements of StructReader */
@@ -105,6 +106,16 @@ public class ForwardingStructReader implements StructReader {
   @Override
   public double getDouble(String columnName) {
     return delegate.getDouble(columnName);
+  }
+
+  @Override
+  public BigDecimal getBigDecimal(int columnIndex) {
+    return delegate.getBigDecimal(columnIndex);
+  }
+
+  @Override
+  public BigDecimal getBigDecimal(String columnName) {
+    return delegate.getBigDecimal(columnName);
   }
 
   @Override
@@ -205,6 +216,16 @@ public class ForwardingStructReader implements StructReader {
   @Override
   public List<Double> getDoubleList(String columnName) {
     return delegate.getDoubleList(columnName);
+  }
+
+  @Override
+  public List<BigDecimal> getBigDecimalList(int columnIndex) {
+    return delegate.getBigDecimalList(columnIndex);
+  }
+
+  @Override
+  public List<BigDecimal> getBigDecimalList(String columnName) {
+    return delegate.getBigDecimalList(columnName);
   }
 
   @Override

@@ -36,6 +36,7 @@ import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 import com.google.common.hash.PrimitiveSink;
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -233,6 +234,9 @@ class ChecksumResultSet extends ReplaceableForwardingResultSet implements Retria
             case FLOAT64:
               funnelValue(type, row.getDouble(i), into);
               break;
+            case NUMERIC:
+              funnelValue(type, row.getBigDecimal(i), into);
+              break;
             case INT64:
               funnelValue(type, row.getLong(i), into);
               break;
@@ -277,6 +281,12 @@ class ChecksumResultSet extends ReplaceableForwardingResultSet implements Retria
           into.putInt(row.getDoubleList(columnIndex).size());
           for (Double value : row.getDoubleList(columnIndex)) {
             funnelValue(Code.FLOAT64, value, into);
+          }
+          break;
+        case NUMERIC:
+          into.putInt(row.getBigDecimalList(columnIndex).size());
+          for (BigDecimal value : row.getBigDecimalList(columnIndex)) {
+            funnelValue(Code.NUMERIC, value, into);
           }
           break;
         case INT64:
@@ -331,6 +341,11 @@ class ChecksumResultSet extends ReplaceableForwardingResultSet implements Retria
             break;
           case FLOAT64:
             into.putDouble((Double) value);
+            break;
+          case NUMERIC:
+            String stringRepresentation = ((BigDecimal) value).toString();
+            into.putInt(stringRepresentation.length());
+            into.putUnencodedChars(stringRepresentation);
             break;
           case INT64:
             into.putLong((Long) value);

@@ -24,6 +24,7 @@ import com.google.cloud.spanner.Type.StructField;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.spanner.v1.ResultSetStats;
+import java.math.BigDecimal;
 import java.util.List;
 
 /** Utility methods for working with {@link com.google.cloud.spanner.ResultSet}. */
@@ -160,6 +161,16 @@ public final class ResultSets {
     }
 
     @Override
+    public BigDecimal getBigDecimal(int columnIndex) {
+      return getCurrentRowAsStruct().getBigDecimal(columnIndex);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(String columnName) {
+      return getCurrentRowAsStruct().getBigDecimal(columnName);
+    }
+
+    @Override
     public String getString(int columnIndex) {
       return getCurrentRowAsStruct().getString(columnIndex);
     }
@@ -257,6 +268,16 @@ public final class ResultSets {
     @Override
     public List<Double> getDoubleList(String columnName) {
       return getCurrentRowAsStruct().getDoubleList(columnName);
+    }
+
+    @Override
+    public List<BigDecimal> getBigDecimalList(int columnIndex) {
+      return getCurrentRowAsStruct().getBigDecimalList(columnIndex);
+    }
+
+    @Override
+    public List<BigDecimal> getBigDecimalList(String columnName) {
+      return getCurrentRowAsStruct().getBigDecimalList(columnName);
     }
 
     @Override
